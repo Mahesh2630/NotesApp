@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Note</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-icon name="checkmark-outline" slot="end" size="large" (click)="todoViewForm.ngSubmit.emit()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="saveTodo(todoViewForm)" #todoViewForm="ngForm">
+    <ion-item>
+      <ion-label position="floating">Titile</ion-label>
+      <ion-input type="text" [(ngModel)]="title" name="title" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea [(ngModel)]="description" name="description" required placeholder="Enter more information here..." rows="10" cols="20" clearOnEdit="true"></ion-textarea>
+    </ion-item>
+  </form>
+  <div class="editedDate" *ngIf="todoEditedDate">
+    <ion-note>Edited On {{ todoEditedDate | date: 'dd/mm/yyyy'}}</ion-note>
+  </div>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="ion-text-center">
+    <ion-button color="danger" (click)="todoDelete()" fill="outline" shape="round">
+      <ion-note>Delete Note</ion-note>
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

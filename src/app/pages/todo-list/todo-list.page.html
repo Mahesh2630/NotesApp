@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar *ngIf="!searchShow">
+    <ion-title class="ion-text-center">Notes</ion-title>
+    <ion-icon name="search-outline" slot="end" (click)="searchBar(true)"></ion-icon>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="searchShow">
+    <ion-searchbar
+      (ionChange)="search($event)"
+      showCancelButton="always"
+      (ionCancel)="onCancel($event)"
+      (ionClear)="onCancel($event)"
+    >
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" [routerLink]="['/todo-add']">
+    <ion-fab-button>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-list>
+
+    <div *ngFor="let todo of todoService.todos; let i = index">
+      <ion-item (click)="viewTodo(todo, i)" detail>
+        <ion-avatar slot="start">
+          <img src="./assets/todo-icon.png">
+        </ion-avatar>
+        <ion-label>
+          <span>{{todo.createdDate | date: 'dd/mm/yyyy'}}</span>
+          <h2>{{todo.title}} 
+          </h2>
+          <p>{{todo.description}}</p>
+        </ion-label>
+        <!-- <ion-icon name="trash-outline" slot="end" (click)="todoDelete(todo, i); $event.stopPropagation();"></ion-icon> -->
+      </ion-item>  
+    </div>
+
+  </ion-list>
+</ion-content>

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Add Note</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="addTodo(todoAddForm)"  #todoAddForm="ngForm">
+    <ion-item>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input type="text" [(ngModel)]="title" name="title" required ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea [(ngModel)]="description" name="description" required placeholder="Enter more information here..." rows="6" cols="20" clearOnEdit="true"></ion-textarea>
+    </ion-item>
+  </form>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="ion-text-center">
+    <ion-button (click)="todoAddForm.ngSubmit.emit()" fill="outline" shape="round">
+      <ion-note>Add Note</ion-note>
+      <ion-icon name="add-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
+
